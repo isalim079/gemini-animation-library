@@ -24,17 +24,19 @@ Use this skill whenever the user provides a story, topic, or news event and want
 - **Palette:** Use soft, muted, eye-soothing watercolor/paper-textured backgrounds (misty slate-blue, warm dusk, calm twilight, soft dawn) with subtle low-frequency paper grain (`blotch * 3.0 + fine * 1.2`) and zero harsh neon colors.
 - **Accents:** Muted sage green (`#789E6B`), warm amber (`#D4A36A`), and muted terracotta (`#C8645B`) for dramatic turns.
 - **Characters:** Thick dark ink outlines (`#1A1C20`), oversized expressive cartoon eyes with periodic blinking and mood eyelids (`neutral`, `happy`, `proud`, `shocked`, `sad`), and clean stick limbs.
+- **Motion & Noun-Synced Animation (Reference: `dtmU-KQitHE`):** Never hold static images while narrating. Use continuous gentle camera glides, smooth transitions, and animate every spoken object, number, or callout tag the moment it is mentioned.
 - **Safe Zones (`1080x1920`):** Keep top badges at `y = 210`, titles at `y = 340`, characters/props in `y = 500..1250`, and captions at `y = 1480` (above YouTube Shorts bottom UI).
 
-### 3. Natural Voiceover (Qwen3-TTS or Edge-TTS — Zero Irritating Background Music)
+### 3. Natural Voiceover & Tactile Micro-SFX (Zero Irritating Background Music)
 - Generate 5 scene narration clips (`01.wav`–`05.wav`) using **Qwen3-TTS** (`qwen-tts` — `Qwen/Qwen3-TTS-12Hz-1.7B-CustomVoice` or `0.6B-CustomVoice` with speakers like `Ryan`/`Aiden`, `VoiceDesign` for custom character voices, or `Base` for 3-second voice cloning) OR `edge-tts` (`en-US-AndrewNeural`, `rate="-4%"`).
-- Convert to 48 kHz mono WAV, trim leading/trailing silence, and assemble onto a 40.0s stereo `mix.wav` with clean pauses between scenes. Do **not** add repetitive or distracting background loops.
+- Convert to 48 kHz mono WAV, trim leading/trailing silence, and assemble onto a 40.0s stereo `mix.wav` with clean pauses between scenes.
+- **Audio & SFX Standard:** Do **not** add loud, percussive, or repetitive background music. Pair clean narration with crisp, tactile **micro-SFX** (soft whooshes, subtle UI pops/ticks on callouts, gentle chimes) — and if a music bed is ever used, keep it ultra-subtle (`-22` to `-25 dB` under narration, soft marimba/lo-fi pluck only).
 
-### 4. `librosa` Speech-Energy Analysis & Single-Word Pop Captions
+### 4. `librosa` Speech-Energy Analysis & Non-Jittering Selection-Box Captions
 - Run `librosa/.venv/bin/python` on `mix.wav` (`audio_sync.json`) and on each `voice/0*.wav` (`word_timings.json`) using `librosa.feature.rms` to distribute word timings proportionally to actual spoken energy.
-- Render captions in **3-word rolling chunks**:
-  - **Non-focused words:** Stay completely still on the baseline (`base_y = 1480`) with crisp dark outlines and soft drop shadows.
-  - **Focused word only:** Performs a single, non-looping one-shot pop (`ease_out_back` over `0.14s`, lifted by `10 + 12 * rms` px) inside a rounded highlight pill. Never wave all words in a continuous loop.
+- Render captions in **2–4 word chunks** centered at `y = 1440..1480` with **zero vertical bounce and zero horizontal reflow** so viewer reading concentration never breaks:
+  - **Baseline words:** Locked completely stationary in muted grey (`#9CA3AF`) with soft drop shadow.
+  - **Active word only:** Turns bright white (`#FFFFFF`) inside a **thin yellow CAD-style selection rectangle (`#FACC15`) with 4 small corner anchor dots** that slides/snaps smoothly to the active word (or an energy-synced subtle highlight pill), without jumping or shifting adjacent words.
 
 ### 5. Render, Master & Verify
 - Render 960 frames (`1080x1920`, `24 fps`) via Python `Pillow` piped into `ffmpeg` (`libx264`, `crf 16`, `yuv420p`).

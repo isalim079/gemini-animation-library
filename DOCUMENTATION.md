@@ -33,3 +33,10 @@ videos/
 - **Original Visuals & Audio:** 100% procedurally drawn 2D art and synthesized neural voiceover—zero reused clips or copyrighted music (safe from Reused Content / Content ID claims).
 - **Advertiser-Friendly & Non-Defamatory:** Factual reporting only; no profanity, hate speech, harassment, or unverified accusations.
 - **Metadata Hygiene:** Accurate, non-sensationalized titles (<70 chars), clear descriptions, and 5–8 relevant hashtags (no tag stuffing).
+
+## 5. Reference Production Standard (`dtmU-KQitHE` — *SizedUnderstood*)
+Reverse-engineered from high-retention tech explainer Shorts (`1:34`, `2.19M+` views):
+- **Captions (Zero Eye Fatigue):** Display **2–4 words** per phrase in a clean sans-serif font on a locked horizontal baseline. Highlight the active word with a **thin yellow CAD-style selection frame (`#FACC15`) with corner anchor dots** while keeping unfocused words muted (`#9CA3AF`). Never bounce or reflow text vertically.
+- **Audio & Music:** Keep **voiceover + crisp micro-SFX** (pops, ticks, counters, electrical hums) 100% dominant. Either omit background music entirely or use an ultra-subtle soft marimba/lo-fi pulse at **`-22` to `-25 dB`** under the voice—zero percussive kicks or bright synth arpeggios.
+- **Continuous Visual Sync:** Never hold a static frame—pair continuous camera glides, macro zooms, and X-ray peel-aways with an immediate **UI callout card or counter** for every spoken noun or number, plus a persistent corner progress badge (e.g. running cost or score).
+

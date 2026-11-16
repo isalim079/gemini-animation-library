@@ -19,10 +19,12 @@ REQUIREMENTS:
 4. Natural Voiceover Only (Qwen3-TTS or Edge-TTS):
    - Generate natural neural narration using **Qwen3-TTS** (`qwen-tts` — e.g., `Qwen/Qwen3-TTS-12Hz-1.7B-CustomVoice` / `0.6B-CustomVoice` with speakers like `Ryan` or `Aiden`, `VoiceDesign`, or `Base` voice cloning) OR `edge-tts` (`en-US-AndrewNeural`, rate `-4%`) for all 5 scenes.
    - Do NOT add irritating or repetitive background music.
-5. Librosa-Synced Single-Word Pop Captions:
+5. Librosa-Synced Non-Jittering Captions (`dtmU-KQitHE` Reference Standard):
    - Align word timings and vocal RMS energy using `librosa` on the voiceover.
-   - Display 3-word rolling caption chunks at y=1480.
-   - Keep non-focused words completely still on the baseline; ONLY the currently focused word performs a clean, single one-shot pop (no continuous wave loop).
+   - Display **2–4 word chunks** on a locked horizontal baseline (`y=1480` for 9:16, `y=940` for 16:9) with zero vertical bounce or text reflow.
+   - Highlight ONLY the active word using a **sleek yellow selection box (`#FACC15`) with corner anchor dots** (or a single subtle `ease_out_back` scale), keeping unfocused words muted (`#9CA3AF`) so the viewer never loses concentration.
+6. Continuous Noun-Synced Animation:
+   - Animate every spoken noun, number, and comparison immediately (camera glides, X-ray cutaways, UI callout cards, and a persistent corner progress/counter badge)—never leave a static image on screen.
 6. Master & Verify:
    - Mux using `lemo-opuscar/core/render/mux.sh` at `-14.0 LUFS` (`grain=0`) into `/Volumes/Salim_EX/salim/2D_animation_test/videos/<TODAY_YYYY-MM-DD>/<story_slug>.mp4`.
    - Visually inspect sample frames before delivering.
