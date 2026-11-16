@@ -26,8 +26,8 @@ Use this skill whenever the user provides a story, topic, or news event and want
 - **Characters:** Thick dark ink outlines (`#1A1C20`), oversized expressive cartoon eyes with periodic blinking and mood eyelids (`neutral`, `happy`, `proud`, `shocked`, `sad`), and clean stick limbs.
 - **Safe Zones (`1080x1920`):** Keep top badges at `y = 210`, titles at `y = 340`, characters/props in `y = 500..1250`, and captions at `y = 1480` (above YouTube Shorts bottom UI).
 
-### 3. Natural Voiceover (Zero Irritating Background Music)
-- Generate 5 scene narration clips (`01.mp3`–`05.mp3`) using `edge-tts` with `en-US-AndrewNeural` (or another calm neural narrator) at `rate="-4%"`.
+### 3. Natural Voiceover (Qwen3-TTS or Edge-TTS — Zero Irritating Background Music)
+- Generate 5 scene narration clips (`01.wav`–`05.wav`) using **Qwen3-TTS** (`qwen-tts` — `Qwen/Qwen3-TTS-12Hz-1.7B-CustomVoice` or `0.6B-CustomVoice` with speakers like `Ryan`/`Aiden`, `VoiceDesign` for custom character voices, or `Base` for 3-second voice cloning) OR `edge-tts` (`en-US-AndrewNeural`, `rate="-4%"`).
 - Convert to 48 kHz mono WAV, trim leading/trailing silence, and assemble onto a 40.0s stereo `mix.wav` with clean pauses between scenes. Do **not** add repetitive or distracting background loops.
 
 ### 4. `librosa` Speech-Energy Analysis & Single-Word Pop Captions

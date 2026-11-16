@@ -16,8 +16,8 @@ REQUIREMENTS:
 3. Eye-Soothing 2D Cartoon Style:
    - Use soft, muted watercolor/paper-textured backgrounds (misty slate, twilight, calm storm, soft dawn) with gentle sage (#789E6B), warm amber (#D4A36A), and muted terracotta (#C8645B) accents—no harsh neon colors or heavy grain.
    - Draw expressive 2D characters with thick dark ink outlines (#1A1C20), oversized Timber-style eyes with periodic blinking and mood eyelids, and stick limbs.
-4. Natural Voiceover Only:
-   - Generate natural neural narration (`en-US-AndrewNeural` via `edge-tts`, rate `-4%`) for all 5 scenes.
+4. Natural Voiceover Only (Qwen3-TTS or Edge-TTS):
+   - Generate natural neural narration using **Qwen3-TTS** (`qwen-tts` — e.g., `Qwen/Qwen3-TTS-12Hz-1.7B-CustomVoice` / `0.6B-CustomVoice` with speakers like `Ryan` or `Aiden`, `VoiceDesign`, or `Base` voice cloning) OR `edge-tts` (`en-US-AndrewNeural`, rate `-4%`) for all 5 scenes.
    - Do NOT add irritating or repetitive background music.
 5. Librosa-Synced Single-Word Pop Captions:
    - Align word timings and vocal RMS energy using `librosa` on the voiceover.

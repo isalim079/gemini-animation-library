@@ -1,7 +1,7 @@
 # 2D Animation Shorts Pipeline — Full Documentation
 
 ## 1. Installed Environment (`/Volumes/Salim_EX/salim/2D_animation_test`)
-- **`lemo-opuscar/`**: Style library, rendering/audio tools, and `core/render/mux.sh` (two-pass `-14 LUFS` YouTube loudness mastering via FFmpeg 9.0.2). Uses `.venv` (Python 3.12 + `edge-tts`, `numpy`, `pillow`, `soundfile`).
+- **`lemo-opuscar/`**: Style library, rendering/audio tools, and `core/render/mux.sh` (two-pass `-14 LUFS` YouTube loudness mastering via FFmpeg 9.0.2). Uses `.venv` (Python 3.12 + `qwen-tts`, `edge-tts`, `numpy`, `pillow`, `scipy`, `soundfile`).
 - **`rea-video/`**: Video reverse-engineering CLI (`rea-video decompose`) used to analyze reference videos shot-by-shot into `VIDEO.md` and `report.html`. Uses `.venv` (Python 3.12 + `opencv-python-headless`, `onnxruntime`, `rapidocr-onnxruntime`).
 - **`librosa/`**: Audio analysis library (`1.1.0dev` on Python 3.13 `.venv`) used to compute vocal RMS energy envelopes and align word-level caption timings.
 - **`timber-shorts-skill/SKILL.md`**: Reusable agent skill encoding the complete workflow.
@@ -13,7 +13,7 @@ videos/
 └── YYYY-MM-DD/
     ├── <video_name>.mp4          # Final mastered 1080x1920, 24fps, -14 LUFS MP4
     └── <slug>_project/
-        ├── voice/                # 01.mp3..05.mp3 & 01.wav..05.wav (edge-tts)
+        ├── voice/                # 01.wav..05.wav (Qwen3-TTS or edge-tts)
         ├── mix.wav               # Assembled 40.0s 48kHz stereo voiceover
         ├── audio_sync.json       # librosa 24fps RMS & beat data
         ├── word_timings.json     # librosa speech-energy aligned word timestamps
@@ -23,7 +23,7 @@ videos/
 
 ## 3. How the Pipeline Works
 1. **Reference Reverse-Engineering (`rea-video`):** Extracted 67 shots from *Timber* (`mBZBPptSneM`), identifying 24 fps pacing, locked framing, muted paper-textured palettes, and oversized expressive eyes/eyelids with stick limbs.
-2. **Natural Voiceover (`edge-tts`):** Generates clean neural narration (`en-US-AndrewNeural`, `rate="-4%"`) with zero distracting background loops.
+2. **Natural Voiceover (`qwen-tts` / `edge-tts`):** Generates expressive local neural narration, custom character voices, or 3-second voice clones via **Qwen3-TTS** (`Qwen/Qwen3-TTS-12Hz-1.7B/0.6B-CustomVoice`, `VoiceDesign`, or `Base`), or fast cloud narration via `edge-tts` (`en-US-AndrewNeural`, `rate="-4%"`), with zero distracting background loops.
 3. **`librosa` Word Alignment & Pop Emphasis:** Computes per-frame vocal RMS (`rms_24fps`) and distributes word timestamps (`word_timings.json`) proportionally to actual speech energy so pauses are respected.
 4. **Non-Looping Single-Word Pop Captions:** Renders 3-word chunks in the lower safe zone (`y = 1480`). Unfocused words remain stationary on the baseline; only the active word performs a single `ease_out_back` pop scaled by `librosa` RMS.
 5. **Mastering (`mux.sh`):** Two-pass EBU R128 loudness normalization to `-14.0 LUFS` and true-peak limiting (`<= -1.0 dBFS`) for YouTube Shorts.

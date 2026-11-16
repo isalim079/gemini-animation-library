@@ -72,7 +72,7 @@ Create and activate a virtual environment inside `lemo-opuscar/.venv` and instal
   python3 -m venv lemo-opuscar/.venv
   source lemo-opuscar/.venv/bin/activate
   pip install --upgrade pip
-  pip install pillow numpy scipy soundfile edge-tts
+  pip install pillow numpy scipy soundfile edge-tts qwen-tts
   ```
 
 * **Windows (PowerShell):**
@@ -80,7 +80,7 @@ Create and activate a virtual environment inside `lemo-opuscar/.venv` and instal
   py -3 -m venv lemo-opuscar\.venv
   .\lemo-opuscar\.venv\Scripts\Activate.ps1
   python -m pip install --upgrade pip
-  python -m pip install pillow numpy scipy soundfile edge-tts
+  python -m pip install pillow numpy scipy soundfile edge-tts qwen-tts
   ```
   *(If PowerShell blocks script execution, run `Set-ExecutionPolicy -Scope CurrentUser RemoteSigned` once, or use Command Prompt: `lemo-opuscar\.venv\Scripts\activate.bat`.)*
 
@@ -124,8 +124,9 @@ Ideal for visual storytelling Shorts (e.g., *T1 Turns ON*) with custom 2D vector
 ### Workflow B: Narrated Shorts with Word-Aligned Pop Captions
 Ideal for 40-second story/explainer Shorts (see [`DOCUMENTATION.md`](./DOCUMENTATION.md) and [`master_prompt.md`](./master_prompt.md)).
 
-1. **Generate Narration (`edge-tts`):**
-   * Generate clean voiceover clips (`en-US-AndrewNeural`, `rate="-4%"`) and assemble a `40.0s` `48 kHz` stereo `mix.wav`.
+1. **Generate Narration (`qwen-tts` or `edge-tts`):**
+   * **Qwen3-TTS (Local / Expressive / Voice Clone):** Use [`Qwen3-TTS`](https://github.com/QwenLM/Qwen3-TTS) (`qwen-tts`) for expressive narration (`Qwen/Qwen3-TTS-12Hz-1.7B-CustomVoice` or `0.6B-CustomVoice` with speakers like `Ryan` or `Aiden`), custom character voice design (`VoiceDesign`), or 3-second voice cloning (`Base`).
+   * **Edge-TTS (Fast Cloud Fallback):** Or generate clean voiceover clips (`en-US-AndrewNeural`, `rate="-4%"`) and assemble a `40.0s` `48 kHz` stereo `mix.wav`.
 2. **Extract Speech Energy (`librosa`):**
    * Compute per-frame vocal RMS (`rms_24fps`) and map word timestamps into `word_timings.json` so pauses and emphasis are respected.
 3. **Render Frames & Captions:**
