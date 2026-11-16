@@ -2,6 +2,7 @@
 
 ## 1. Installed Environment (`/Volumes/Salim_EX/salim/2D_animation_test`)
 - **`lemo-opuscar/`**: Style library, rendering/audio tools, and `core/render/mux.sh` (two-pass `-14 LUFS` YouTube loudness mastering via FFmpeg 9.0.2). Uses `.venv` (Python 3.12 + `qwen-tts`, `edge-tts`, `numpy`, `pillow`, `scipy`, `soundfile`).
+- **`Qwen3-TTS/`**: Local Qwen3-TTS repository (`qwen-tts` installed in editable mode into `lemo-opuscar/.venv`) for expressive narration, voice design, and voice cloning.
 - **`rea-video/`**: Video reverse-engineering CLI (`rea-video decompose`) used to analyze reference videos shot-by-shot into `VIDEO.md` and `report.html`. Uses `.venv` (Python 3.12 + `opencv-python-headless`, `onnxruntime`, `rapidocr-onnxruntime`).
 - **`librosa/`**: Audio analysis library (`1.1.0dev` on Python 3.13 `.venv`) used to compute vocal RMS energy envelopes and align word-level caption timings.
 - **`timber-shorts-skill/SKILL.md`**: Reusable agent skill encoding the complete workflow.

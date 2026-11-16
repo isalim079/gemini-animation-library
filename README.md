@@ -14,6 +14,7 @@ A complete toolkit and workflow for creating vertical **9:16 (1080×1920, 24 fps
 ├── .gitignore                  # Excludes rendered videos, frames, audio & virtualenvs
 ├── timber-shorts-skill/        # Reusable agent skill (SKILL.md) for 2D Shorts
 ├── lemo-opuscar/               # Style library, audio/render helpers & mux.sh
+├── Qwen3-TTS/                  # Local Qwen3-TTS voiceover, design & cloning repo
 ├── librosa/                    # Speech-energy analysis for word-level caption timing
 ├── rea-video/                  # Shot-by-shot reference video analyzer (VIDEO.md)
 └── videos/                     # (Git-ignored) Rendered MP4s & per-project assets
